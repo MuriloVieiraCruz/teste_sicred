@@ -1,6 +1,7 @@
 package com.murilovieira.testesicred.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class Associate {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "associate_sequence")
     private Long id;
 
+    @NotNull
     @Column(name = "nr_cpf", nullable = false)
     private String cpf;
 }

@@ -33,11 +33,15 @@ public class Session {
     @Column(name = "tm_session_duration", nullable = false)
     private Integer sessionDuration;
 
+    @Column(name = "dt_session_end", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm", timezone = "GMT")
+    private LocalDateTime sessionEnd;
+
     @Enumerated(value = EnumType.STRING)
     @Column(name = "nr_session_state", nullable = false)
     private SessionState sessionState;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_discussion", nullable = false)
     private Discussion discussion;
 
@@ -52,9 +56,14 @@ public class Session {
         this.votes = votes;
     }
 
-    private void sessionDurationValidation(Integer sessionDuration) {
+    public void validateSessionDuration() {
         if (this.sessionDuration == null) {
             this.sessionDuration = Math.toIntExact(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(1));
         }
+        addSessionEnd();
+    }
+
+    public void addSessionEnd() {
+        this.sessionEnd = LocalDateTime.now().plusMinutes(this.sessionDuration);
     }
 }
