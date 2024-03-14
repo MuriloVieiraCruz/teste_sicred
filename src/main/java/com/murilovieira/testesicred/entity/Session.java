@@ -42,19 +42,8 @@ public class Session {
     private SessionState sessionState;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_discussion", nullable = false)
+    @JoinColumn(name = "discussion_id", nullable = false)
     private Discussion discussion;
-
-    @ManyToOne
-    private List<Vote> votes = new ArrayList<>();
-
-    public Session(LocalDateTime sessionStart, Integer sessionDuration, SessionState sessionState, Discussion discussion, List<Vote> votes) {
-        this.sessionStart = sessionStart;
-        this.sessionDuration = sessionDuration;
-        this.sessionState = sessionState;
-        this.discussion = discussion;
-        this.votes = votes;
-    }
 
     public void validateSessionDuration() {
         if (this.sessionDuration == null) {

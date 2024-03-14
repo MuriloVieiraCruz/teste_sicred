@@ -1,5 +1,6 @@
 package com.murilovieira.testesicred.entity;
 
+import com.murilovieira.testesicred.entity.enums.VoteAnswer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
+@Table(name = "tb_vote")
 public class Vote {
 
     @Id
@@ -18,9 +20,14 @@ public class Vote {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "id_associate", nullable = false)
+    @JoinColumn(name = "associate_id", nullable = false)
     private Associate associate;
 
-    @Column(name = "vl_vote", nullable = false)
-    private Boolean vote;
+    @ManyToOne
+    @JoinColumn(name = "session_id", nullable = false)
+    private Session session;
+
+    @Enumerated(value = EnumType.ORDINAL)
+    @Column(name = "vl_vote_answer", nullable = false)
+    private VoteAnswer voteAnswer;
 }
