@@ -34,6 +34,6 @@ public class Discussion {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone = "GMT")
     private LocalDate creationDate;
 
-    @Column(name = "nr_vote_number")
-    private Integer voteNumber;
+    @Column(name = "nr_total_votes")
+    private Integer totalVotes;
 }

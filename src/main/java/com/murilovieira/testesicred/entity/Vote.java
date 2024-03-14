@@ -19,6 +19,10 @@ public class Vote {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Enumerated(value = EnumType.ORDINAL)
+    @Column(name = "vl_vote_answer", nullable = false)
+    private VoteAnswer voteAnswer;
+
     @OneToOne
     @JoinColumn(name = "associate_id", nullable = false)
     private Associate associate;
@@ -26,8 +30,4 @@ public class Vote {
     @ManyToOne
     @JoinColumn(name = "session_id", nullable = false)
     private Session session;
-
-    @Enumerated(value = EnumType.ORDINAL)
-    @Column(name = "vl_vote_answer", nullable = false)
-    private VoteAnswer voteAnswer;
 }
