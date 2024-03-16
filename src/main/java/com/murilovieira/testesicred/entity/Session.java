@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
-@Entity
+@Entity(name = "Session")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -54,6 +54,5 @@ public class Session {
 
     public void addSessionEnd() {
         this.sessionEnd = LocalDateTime.now().plusMinutes(this.sessionDuration);
-        System.out.println(this.sessionEnd);
     }
 }

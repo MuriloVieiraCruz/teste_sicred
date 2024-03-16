@@ -19,11 +19,10 @@ public class Vote {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(value = EnumType.ORDINAL)
     @Column(name = "vl_vote_answer", nullable = false)
-    private VoteAnswer voteAnswer;
+    private Boolean voteAnswer;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "associate_id", nullable = false)
     private Associate associate;
 

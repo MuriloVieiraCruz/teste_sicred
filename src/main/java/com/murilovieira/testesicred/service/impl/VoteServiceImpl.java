@@ -28,7 +28,7 @@ public class VoteServiceImpl {
             throw new AlreadyVotedException();
         }
         Vote newVote = Vote.builder()
-                .voteAnswer(voteCreateDto.voteAnswer())
+                .voteAnswer(voteCreateDto.voteAnswer().getValue())
                 .session(sessionFound)
                 .associate(voteCreateDto.associate())
                 .build();
