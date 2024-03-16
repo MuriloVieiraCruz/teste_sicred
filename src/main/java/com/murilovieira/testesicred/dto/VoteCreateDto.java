@@ -8,8 +8,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
 
 public record VoteCreateDto(
-        @NotNull
+        @NotNull(message = "Associate ID must be informed")
         Associate associate,
 
+        @NotNull(message = "Vote answer must be informed")
         VoteAnswer voteAnswer) {
 }

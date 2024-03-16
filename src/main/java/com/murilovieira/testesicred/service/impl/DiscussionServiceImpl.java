@@ -6,6 +6,7 @@ import com.murilovieira.testesicred.entity.Session;
 import com.murilovieira.testesicred.entity.enums.SessionState;
 import com.murilovieira.testesicred.repository.DiscussionRepository;
 import com.murilovieira.testesicred.repository.SessionRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +19,12 @@ public class DiscussionServiceImpl {
     @Autowired
     private DiscussionRepository discussionRepository;
 
+    @Transactional
     public Discussion createDiscussion(DiscussionCreateDto discussionCreateDto) {
         Discussion newDiscussion = Discussion.builder()
                 .description(discussionCreateDto.description())
                 .subject(discussionCreateDto.subject())
+                .creationDate(LocalDate.now())
                 .build();
         return discussionRepository.save(newDiscussion);
     }

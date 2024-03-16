@@ -1,5 +1,7 @@
 package com.murilovieira.testesicred.config;
 
+import com.murilovieira.testesicred.entity.Session;
+import com.murilovieira.testesicred.entity.enums.VoteAnswer;
 import com.murilovieira.testesicred.repository.DiscussionRepository;
 import com.murilovieira.testesicred.repository.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +23,19 @@ public class TimerVerifier {
     private DiscussionRepository discussionRepository;
 
 //    public void endSession() {
-//        sessaoAberta = false;
+//        //sessaoAberta = false;
 //    }
 
     @Async
     @Scheduled(fixedRate = 30000)
     public void verifyTime() {
-        System.out.println("Funcionou, tempo:" + System.currentTimeMillis());
+        boolean existSessionClosed = sessionRepository.isAlreadyVoted();
+        System.out.println("Se passou por aqui ");
+        if (existSessionClosed) {
+            Session session = sessionRepository.updateSessionsClosed();
+            int totalPositiveVotes = sessionRepository.countVoteSession(session.getId(), VoteAnswer.SIM.getValue());
+            int totalNegativeVotes = sessionRepository.countVoteSession(session.getId(), VoteAnswer.NAO.getValue());
+            discussionRepository.updateDiscussionVotes(Math.max(totalPositiveVotes, totalNegativeVotes), session.getDiscussion().getId());
+        }
     }
 }

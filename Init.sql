@@ -17,15 +17,15 @@ CREATE TABLE IF NOT EXISTS tb_session (
     tm_session_duration INTEGER,
     dt_session_end TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     nr_session_state VARCHAR(6) NOT NULL,
-    discussion_id INTEGER,
+    discussion_id LONG,
     CONSTRAINT fk_discussion FOREIGN KEY (discussion_id) REFERENCES tb_discussion(id)
 )
 
 CREATE TABLE IF NOT EXISTS tb_vote (
     id SERIAL PRIMARY KEY,
     vl_vote_answer BOOLEAN,
-    associate_id INTEGER,
-    session_id INTEGER,
+    associate_id LONG,
+    session_id LONG,
     CONSTRAINT fk_associate FOREIGN KEY (associate_id) REFERENCES tb_associate(id),
     CONSTRAINT fk_session FOREIGN KEY (session_id) REFERENCES tb_session(id)
 )

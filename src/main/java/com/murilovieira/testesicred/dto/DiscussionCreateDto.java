@@ -6,7 +6,5 @@ public record DiscussionCreateDto(
         @NotNull
         String subject,
         @NotNull
-        String description,
-        @NotNull
-        Integer sessionDuration) {
+        String description) {
 }

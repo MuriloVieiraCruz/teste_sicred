@@ -15,14 +15,18 @@ public class VoteController {
     @Autowired
     private VoteServiceImpl voteService;
 
-    @PostMapping("/vote")
+    @PostMapping("/vote-session/{sessionId}")
     public ResponseEntity<?> voteInSession(
-            @RequestParam
-            @NotNull
-            Long idSession,
+            @PathVariable("sessionId")
+            Long sessionId,
+            @RequestBody
             @Valid
             VoteCreateDto voteCreateDto) {
-        voteService.voteInSession(idSession, voteCreateDto);
-        return ResponseEntity.ok().build();
+        try {
+            voteService.voteInSession(sessionId, voteCreateDto);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }

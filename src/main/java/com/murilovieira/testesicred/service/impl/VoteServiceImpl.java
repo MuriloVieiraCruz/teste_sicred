@@ -7,6 +7,7 @@ import com.murilovieira.testesicred.exception.AlreadyVotedException;
 import com.murilovieira.testesicred.exception.SessionNotFoundException;
 import com.murilovieira.testesicred.repository.SessionRepository;
 import com.murilovieira.testesicred.repository.VoteRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ public class VoteServiceImpl {
     @Autowired
     private VoteRepository voteRepository;
 
+    @Transactional
     public void voteInSession(Long sessionId, VoteCreateDto voteCreateDto) {
         Session sessionFound = sessionRepository.findById(sessionId).orElseThrow(SessionNotFoundException::new);
         boolean hasVoted = voteRepository.isAlreadyVoted(sessionFound.getId(), voteCreateDto.associate().getId());
