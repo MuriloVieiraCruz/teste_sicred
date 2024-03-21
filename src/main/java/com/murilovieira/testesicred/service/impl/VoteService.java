@@ -1,10 +1,8 @@
 package com.murilovieira.testesicred.service.impl;
 
-import com.murilovieira.testesicred.dto.ResponseCpfValidation;
 import com.murilovieira.testesicred.dto.VoteCreateDto;
 import com.murilovieira.testesicred.entity.Session;
 import com.murilovieira.testesicred.entity.Vote;
-import com.murilovieira.testesicred.entity.enums.ResponseCpf;
 import com.murilovieira.testesicred.exception.AlreadyVotedException;
 import com.murilovieira.testesicred.exception.SessionNotFoundException;
 import com.murilovieira.testesicred.repository.SessionRepository;
@@ -12,10 +10,9 @@ import com.murilovieira.testesicred.repository.VoteRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
-public class VoteServiceImpl {
+public class VoteService {
 
     @Autowired
     private SessionRepository sessionRepository;

@@ -1,8 +1,7 @@
 package com.murilovieira.testesicred.controller;
 
 import com.murilovieira.testesicred.dto.DiscussionCreateDto;
-import com.murilovieira.testesicred.entity.Discussion;
-import com.murilovieira.testesicred.service.impl.DiscussionServiceImpl;
+import com.murilovieira.testesicred.service.impl.DiscussionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DiscussionController {
 
     @Autowired
-    private DiscussionServiceImpl discussionService;
+    private DiscussionService discussionService;
 
     @PostMapping("/create")
     public ResponseEntity<?> createDiscussion(@RequestBody @Valid DiscussionCreateDto discussionCreateDto) {

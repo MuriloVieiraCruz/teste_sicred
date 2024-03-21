@@ -1,13 +1,10 @@
 package com.murilovieira.testesicred.service.impl;
 
-import com.murilovieira.testesicred.dto.DiscussionCreateDto;
 import com.murilovieira.testesicred.dto.SessionCreateDto;
-import com.murilovieira.testesicred.dto.VoteCreateDto;
 import com.murilovieira.testesicred.entity.Discussion;
 import com.murilovieira.testesicred.entity.Session;
 import com.murilovieira.testesicred.entity.enums.SessionState;
 import com.murilovieira.testesicred.exception.DiscussionNotFoundException;
-import com.murilovieira.testesicred.exception.SessionNotFoundException;
 import com.murilovieira.testesicred.repository.DiscussionRepository;
 import com.murilovieira.testesicred.repository.SessionRepository;
 import jakarta.transaction.Transactional;
@@ -17,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class SessionServiceImpl {
+public class SessionService {
 
     @Autowired
     private SessionRepository sessionRepository;
